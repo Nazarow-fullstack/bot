@@ -5,7 +5,7 @@ from telegram import Update, ReplyKeyboardMarkup
 from telegram.ext import Application, MessageHandler, CommandHandler, CallbackContext, filters, ConversationHandler
 
 TOKEN = "8063979437:AAEXSFhsyc_AGMULR86xZQnzzsaGB-v-zys"
-BACKEND_URL = "https://backend-1-cu4o.onrender.com/get-data"  # Fixed: Fetch JSON instead of xlsx
+BACKEND_URL = "https://backend-1-cu4o.onrender.com/get-data"      # Fixed: Fetch JSON instead of xlsx
 
 LANGUAGE, MENU, PHONE, WEIGHT = range(4)
 
