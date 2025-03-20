@@ -21,6 +21,27 @@ menu_options = {
     "Тоҷикӣ": ["📦 Санҷидани фармоиш", "💰 Нархи 1кг", "📍 Ҷойгиршавии бор", "⚖️ Ҳисоби арзиш"]
 }
 
+menu_responses = {
+    "Русский": {
+        "check_order": "📦 Вы выбрали 'Проверить заказ'. Пожалуйста, отправьте номер телефона для поиска.",
+        "price": "💰 Цена 1 кг: 8$",
+        "location": "📍 Груз находится в Таджикистане.",
+        "calculate_cost": "⚖️ Введите вес вашего заказа (кг):"
+    },
+    "English": {
+        "check_order": "📦 You selected 'Check my order'. Please send your phone number to search.",
+        "price": "💰 Price for 1 kg: 8$",
+        "location": "📍 The cargo is located in Tajikistan.",
+        "calculate_cost": "⚖️ Please enter the weight of your order (kg):"
+    },
+    "Тоҷикӣ": {
+        "check_order": "📦 Шумо 'Санҷидани фармоиш'-ро интихоб кардед. Лутфан рақами телефони худро барои ҷустуҷӯ фиристед.",
+        "price": "💰 Нархи 1 кг: 8$",
+        "location": "📍 Бор дар Точикистон қарор дорад.",
+        "calculate_cost": "⚖️ Лутфан вазни фармоиш (кг)-ро ворид кунед:"
+    }
+}
+
 user_languages = {}
 
 def fetch_orders():
@@ -78,17 +99,17 @@ async def menu_handler(update: Update, context: CallbackContext):
 
     if text in menu_options[chosen_language]:
         if text == menu_options[chosen_language][0]:  # "Проверить заказ"
-            await update.message.reply_text(languages[chosen_language])
+            await update.message.reply_text(menu_responses[chosen_language]["check_order"])
             return PHONE
         elif text == menu_options[chosen_language][1]:  # "Цена"
-            await update.message.reply_text("💰 1 кг стоит 8$")
+            await update.message.reply_text(menu_responses[chosen_language]["price"])
         elif text == menu_options[chosen_language][2]:  # "Локация груза"
             await update.message.reply_photo(
                 photo="https://www.wanderlustmagazine.com/wp-content/uploads/2023/10/WAND_Tajikistan-512x512.jpg",
-                caption="📍 Груз находится в Таджикистане."
+                caption=menu_responses[chosen_language]["location"]
             )
         elif text == menu_options[chosen_language][3]:  # "Рассчитать стоимость"
-            await update.message.reply_text("⚖️ Введите вес заказа (кг):")
+            await update.message.reply_text(menu_responses[chosen_language]["calculate_cost"])
             return WEIGHT
     return MENU
 
